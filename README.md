@@ -17,7 +17,7 @@ The detection of quadratic quasi-normal modes would provide a direct probe into 
  - `posterior`: posterior samples
  - `config`: configuration files used by `pycbc_inference` to obtain posterior files
 
-Note that to reproduce this work, one needs to install [`pycbc`](https://github.com/gwastro/pycbc) and the plugin [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves) for nonlinear quadratic quasi-normal modes waveforms
+To reproduce this work, one needs to install [`pycbc`](https://github.com/gwastro/pycbc) and the plugin [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves) for nonlinear quadratic quasi-normal modes waveforms
 
 ## License and Citation
 
