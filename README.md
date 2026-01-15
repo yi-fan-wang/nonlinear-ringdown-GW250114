@@ -11,7 +11,7 @@ The detection of quadratic quasi-normal modes would provide a direct probe into 
 
 ## Paper
 
-[Arxiv Preprint](http://arxiv.org/abs/2601.XXXXX)
+[Arxiv Preprint](https://arxiv.org/abs/2601.05734)
 
 ## Results
  - `posterior`: posterior samples
@@ -28,5 +28,14 @@ This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 Unite
 We encourage use of these data in derivative works. If you use the material provided here, please cite the paper using the reference:
 
 ```
-
+@article{Wang:2026rev,
+    author = "Wang, Yi-Fan and Ma, Sizheng and Khera, Neev and Yang, Huan",
+    title = "{A nonlinear voice from GW250114 ringdown}",
+    eprint = "2601.05734",
+    archivePrefix = "arXiv",
+    primaryClass = "gr-qc",
+    reportNumber = "LIGO-P2500804",
+    month = "1",
+    year = "2026"
+}
 ```
