@@ -18,8 +18,8 @@ The detection of quadratic quasi-normal modes would provide a direct probe into 
  - `config`: configuration files used by `pycbc_inference` to obtain posterior files
 
 To reproduce this work, one needs to install 
- - [`pycbc`](https://github.com/gwastro/pycbc): Core package to analyze gravitational-wave data, find signals, and study their parameters.
- - [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
+ - [`pycbc`](https://github.com/gwastro/pycbc)(v2.10.0 or the main branch): Core package to analyze gravitational-wave data, find signals, and study their parameters.
+ - [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves)(v1.0 or the main branch): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
  - Download the GW250114 strain data from [GWOSC](https://gwosc.org/eventapi/html/O4_Discovery_Papers/GW250114_082203/v1/)
 
 An example to launch a PyCBC Inference run:
@@ -32,6 +32,8 @@ pycbc_inference --verbose \
     --nprocesses 32 \
     --force
 ```
+
+It takes a few minutes to install the dependent softwares on a computer, and O(1) days to complete the runs using 32 CPU cores.
 
 ## License and Citation
 
