@@ -13,17 +13,30 @@ The detection of quadratic quasi-normal modes would provide a direct probe into 
 
 [Arxiv Preprint](https://arxiv.org/abs/2601.05734)
 
-## Results
+## Results & Reproduction
  - `posterior`: posterior samples
  - `config`: configuration files used by `pycbc_inference` to obtain posterior files
 
-To reproduce this work, one needs to install [`pycbc`](https://github.com/gwastro/pycbc) and the plugin [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves) for nonlinear quadratic quasi-normal modes waveforms
+To reproduce this work, one needs to install 
+ - [`pycbc`](https://github.com/gwastro/pycbc): Core package to analyze gravitational-wave data, find signals, and study their parameters.
+ - [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
+
+An example to launch a PyCBC Inference run:
+```
+OMP_NUM_THREADS=1 \
+pycbc_inference --verbose \
+    --seed 123456 \
+    --config-file config/inference-all10.ini \
+    --output-file posterior/H1L1-INFERENCE_ALL10.hdf \
+    --nprocesses 32 \
+    --force
+```
 
 ## License and Citation
 
-![Creative Commons License](https://i.creativecommons.org/l/by-sa/3.0/us/88x31.png "Creative Commons License")
+![Creative Commons License](https://licensebuttons.net/l/by-sa/4.0/88x31.png "Creative Commons License")
 
-This work is licensed under a [Creative Commons Attribution-ShareAlike 3.0 United States License](http://creativecommons.org/licenses/by-sa/3.0/us/).
+This work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International License](https://creativecommons.org/licenses/by-sa/4.0/).
 
 We encourage use of these data in derivative works. If you use the material provided here, please cite the paper using the reference:
 
