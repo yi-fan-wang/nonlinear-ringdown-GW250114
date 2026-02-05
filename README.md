@@ -22,7 +22,7 @@ To reproduce this work, one needs to install
  - [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves)(v1.0 or the main branch): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
  - Download the GW250114 strain data from [GWOSC](https://gwosc.org/eventapi/html/O4_Discovery_Papers/GW250114_082203/v1/)
 
-An example to launch a PyCBC Inference run:
+An example command line to launch a PyCBC Inference run (this should use a Linux or Mac operation system): 
 ```
 OMP_NUM_THREADS=1 \
 pycbc_inference --verbose \
