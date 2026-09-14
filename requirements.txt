@@ -1,0 +1,8 @@
+numpy==2.3.5
+scipy==1.16.3
+matplotlib==3.11.1
+lalsuite==7.26.4
+jupyterlab>=4,<5
+nbconvert>=7,<8
+git+https://github.com/yi-fan-wang/pycbc.git@b376d71884b8fc5fcd8e7f408fbc17a5a5d33eae
+git+https://github.com/yi-fan-wang/TestingGR_with_Gravwaves.git@93f98891ab2eb3431dcff3727116eca8eb5dc1a2
