@@ -1,25 +1,31 @@
 # A nonlinear voice from GW250114 ringdown
-Yi-Fan Wang <sup>1</sup>, Sizheng Ma <sup>2</sup>, Neev Khera <sup>3,4</sup>, Huan Yang <sup>4</sup>
+Yi-Fan Wang <sup>1,2</sup>, Sizheng Ma <sup>3</sup>, Neev Khera <sup>4</sup>, Junquan Su<sup>4</sup>, Huan Yang <sup>4</sup>
 
-<sub>1.Max-Planck-Institut für Gravitationsphysik (Albert-Einstein-Institut), Am Mühlenberg 1, D-14476 Potsdam, Germany</sub>  
-<sub>2.Perimeter Institute for Theoretical Physics, Waterloo, ON N2L2Y5, Canada</sub>  
-<sub>3.Department of Physics, University of Guelph, Guelph, Ontario, Canada N1G 2W1</sub>  
+<sub>1.Max-Planck-Institut für Gravitationsphysik (Albert-Einstein-Institut), Am Mühlenberg 1, D-14476 Potsdam, Germany</sub>   
+<sub>2.Purple Mountain Observatory, Chinese Academy of Sciences, Nanjing 210034, China</sub>   
+<sub>3.Perimeter Institute for Theoretical Physics, Waterloo, ON N2L2Y5, Canada</sub>  
 <sub>4.Department of Astronomy, Tsinghua University, Beijing 100084, China</sub>  
 
 ## Introduction
-The detection of quadratic quasi-normal modes would provide a direct probe into black hole nonlinear perturbations. We report the first observational evidence of a set of quadratic quasi-normal modes in the gravitational-wave ringdown of a binary black hole merger. Analyzing the signal from GW250114, we detect six nonlinear modes from the quadratic coupling of the fundamental $(2,2,0)$ mode and its first two overtones. At 5 final mass ($M_\mathrm{f}$) after the merger, the evidence for these nonlinear modes reaches a Bayes factor of 74. To single out these contributions, we employ recent theoretical progress to compute the waveforms and subtract the corresponding nonlinear modes from a numerical relativity surrogate waveform. Our data analysis uses a novel method that incorporates inspiral-merger inference results as a highly constraining prior for the ringdown inference. We further perform a test allowing for phenomenological deviations for the theoretically predicted amplitudes of the quadratic modes. The results show that an amplitude of zero is excluded at $3.0~\sigma$ significance level, while the theoretical expectation is consistent with the inference. This detection marks a first step towards observationally characterizing nonlinear perturbations in the ringdown of a black hole.
+Gravitational-wave astronomy, by detecting ripples in spacetime, has opened a new window to observe compact objects and probe theories of gravity in the nonlinear strong-field regime. The ringdown signal of a binary black hole merger contains a superposition of damped sinusoids known as quasi-normal modes [1], whose frequencies are completely determined by the mass and spin of the remnant black hole and form the basis of \textit{black hole spectroscopy} [2-4]. A crucial prediction yet to be observationally confirmed is the existence of quadratic quasi-normal modes, which represent fundamental properties associated with wave–wave coupling in general relativity, and the leading mode is predicted to be detectable with next-generation ground-based detectors [5-7] using traditional methods. Here we show the first observational evidence for a set of quadratic quasi-normal modes in the ringdown of the binary black hole merger GW250114, the loudest gravitational-wave event detected to date, enabled by a novel analysis. These nonlinear modes result from the quadratic coupling of the linear $(2,2,n)$ modes with $n\leq3$. Starting the analysis at a time corresponding to four times the remnant mass ($M_\mathrm{f}$) after the merger, the evidence for their presence reaches a Bayes factor of 62. A phenomenological test allowing these modes to deviate from the theoretical prediction rejects the zero-amplitude hypothesis at a significance of 3.4 $\sigma$, while the inferred amplitude and complex frequency are consistent with the prediction of general relativity. This finding provides the first observational evidence of gravitational wave-wave interaction and extends black hole spectroscopy from the linear to the nonlinear regime. It also establishes a new direction for testing the fundamental nonlinear structure of general relativity with the most extreme gravity.
 
 ## Paper
 
 [Arxiv Preprint](https://arxiv.org/abs/2601.05734)
 
 ## Results & Reproduction
- - `posterior`: posterior samples
  - `config`: configuration files used by `pycbc_inference` to obtain posterior files
+ - jupyter notebooks: reproduce all figures in the paper
+```bash
+python -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+jupyter lab
+```
 
-To reproduce this work, one needs to install 
+We use the following softwares and data to perform this work: 
  - [`pycbc`](https://github.com/gwastro/pycbc)(v2.10.0 or the main branch): Core package to analyze gravitational-wave data, find signals, and study their parameters.
- - [`pytgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves)(v1.0 or the main branch): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
+ - [`tgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves)(the main branch): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
  - Download the GW250114 strain data from [GWOSC](https://gwosc.org/eventapi/html/O4_Discovery_Papers/GW250114_082203/v1/)
 
 An example command line to launch a PyCBC Inference run (this should use a Linux or Mac operation system): 
@@ -34,6 +40,10 @@ pycbc_inference --verbose \
 ```
 
 It takes a few minutes to install the dependent softwares on a computer, and O(1) days to complete the runs using 32 CPU cores.
+
+## Change Log
+
+We have substantially revised the paper in a v2 of the arXiv submission.
 
 ## License and Citation
 
