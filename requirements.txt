@@ -1,8 +1,17 @@
+# Python >= 3.11
 numpy==2.3.5
 scipy==1.16.3
 matplotlib==3.11.1
 lalsuite==7.26.4
+
+# Nested sampler; PyCBC supports the dynesty 2.x API.
+dynesty==2.1.5
+
 jupyterlab>=4,<5
 nbconvert>=7,<8
-git+https://github.com/yi-fan-wang/pycbc.git@b376d71884b8fc5fcd8e7f408fbc17a5a5d33eae
-git+https://github.com/yi-fan-wang/TestingGR_with_Gravwaves.git@93f98891ab2eb3431dcff3727116eca8eb5dc1a2
+
+# Official PyCBC master HEAD checked on 2026-10-06.
+# Pin the commit so future installs use the same source.
+pycbc @ git+https://github.com/gwastro/pycbc.git@ce762aad6a61198b0904086e9dc20c5c39193d28
+
+tgr @ git+https://github.com/yi-fan-wang/TestingGR_with_Gravwaves.git@93f98891ab2eb3431dcff3727116eca8eb5dc1a2
