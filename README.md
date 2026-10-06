@@ -9,24 +9,106 @@ Yi-Fan Wang <sup>1,2</sup>, Sizheng Ma <sup>3</sup>, Neev Khera <sup>4</sup>, Ju
 ## Introduction
 Gravitational-wave astronomy, by detecting ripples in spacetime, has opened a new window to observe compact objects and probe theories of gravity in the nonlinear strong-field regime. The ringdown signal of a binary black hole merger contains a superposition of damped sinusoids known as quasi-normal modes [1], whose frequencies are completely determined by the mass and spin of the remnant black hole and form the basis of \textit{black hole spectroscopy} [2-4]. A crucial prediction yet to be observationally confirmed is the existence of quadratic quasi-normal modes, which represent fundamental properties associated with wave–wave coupling in general relativity, and the leading mode is predicted to be detectable with next-generation ground-based detectors [5-7] using traditional methods. Here we show the first observational evidence for a set of quadratic quasi-normal modes in the ringdown of the binary black hole merger GW250114, the loudest gravitational-wave event detected to date, enabled by a novel analysis. These nonlinear modes result from the quadratic coupling of the linear $(2,2,n)$ modes with $n\leq3$. Starting the analysis at a time corresponding to four times the remnant mass ($M_\mathrm{f}$) after the merger, the evidence for their presence reaches a Bayes factor of 62. A phenomenological test allowing these modes to deviate from the theoretical prediction rejects the zero-amplitude hypothesis at a significance of 3.4 $\sigma$, while the inferred amplitude and complex frequency are consistent with the prediction of general relativity. This finding provides the first observational evidence of gravitational wave-wave interaction and extends black hole spectroscopy from the linear to the nonlinear regime. It also establishes a new direction for testing the fundamental nonlinear structure of general relativity with the most extreme gravity.
 
-## Paper
-
-[Arxiv Preprint](https://arxiv.org/abs/2601.05734)
-
 ## Results & Reproduction
- - `config`: configuration files used by `pycbc_inference` to obtain posterior files
- - jupyter notebooks: reproduce all figures in the paper
-```bash
-python -m venv env
-source env/bin/activate
-pip install -r requirements.txt
-jupyter lab
-```
 
 We use the following softwares and data to perform this work: 
  - [`pycbc`](https://github.com/gwastro/pycbc)(v2.10.0 or the main branch): Core package to analyze gravitational-wave data, find signals, and study their parameters.
  - [`tgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves)(the main branch): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
- - Download the GW250114 strain data from [GWOSC](https://gwosc.org/eventapi/html/O4_Discovery_Papers/GW250114_082203/v1/)
+
+The folder structure in this repository is:
+ - `config`: configuration files used by `pycbc_inference` to obtain posterior files
+ - jupyter notebooks: reproduce all figures in the paper
+
+To reproduce this work and run jupyter notebooks, follow the instructions below:
+
+### requirements installation
+
+```bash
+python -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+```
+
+### NRSur7dq4 waveform data
+
+Generating NRSur7dq4 waveforms and evaluating the remnant fits requires two additional model-data files: `NRSur7dq4_v1.0.h5` and
+`NRSur7dq4Remnant_v1.0.h5`. These files must be available to LALSimulation in addition to the Python packages installed through `requirements.txt`.
+
+Run the following commands from the repository root:
+
+```bash
+mkdir -p data/lalsuite
+
+curl -fL --retry 3 \
+    -o data/lalsuite/NRSur7dq4_v1.0.h5 \
+    https://dcc.ligo.org/public/0198/T2500012/004/NRSur7dq4_v1.0.h5
+
+curl -fL --retry 3 \
+    -o data/lalsuite/NRSur7dq4Remnant_v1.0.h5 \
+    https://dcc.ligo.org/public/0198/T2500012/004/NRSur7dq4Remnant_v1.0.h5
+
+export LAL_DATA_PATH="$PWD/data/lalsuite${LAL_DATA_PATH:+:$LAL_DATA_PATH}"
+```
+
+Set `LAL_DATA_PATH` in each new terminal session before launching Jupyter or PyCBC Inference. If these files are already installed elsewhere, use their containing directory instead.
+
+### LaTeX requirements for plotting
+
+The plotting notebooks use Matplotlib with `text.usetex=True` and Computer Modern fonts. A working LaTeX installation is required; `dvipng` is also needed for raster rendering in Jupyter. These system dependencies are not installed by `pip`.
+
+For Ubuntu/Debian, an example installation command is:
+
+```bash
+sudo apt-get install texlive-latex-extra texlive-fonts-recommended cm-super dvipng
+```
+
+For macOS with Homebrew, a full TeX installation can be installed with:
+
+```bash
+brew install --cask mactex-no-gui
+```
+
+After installing MacTeX, open a new terminal. Verify that the tools are available before starting Jupyter:
+
+```bash
+latex --version
+dvipng --version
+```
+
+For a lightweight preview without LaTeX, replace the corresponding settings in each notebook's plotting configuration with:
+
+```python
+"text.usetex": False,
+"font.serif": ["DejaVu Serif"],
+```
+
+This changes the figure typography but does not change the numerical analysis.
+
+### GWOSC strain data and local file paths
+
+To rerun parameter estimation, download the H1 and L1 strain data for GW250114_082203 from the GWOSC event page [here](https://gwosc.org/eventapi/html/GWTC-5.0/GW250114_082203/v2/). Select the 4096-second, 16 kHz GWF files, starting at GPS time 1420877824.
+
+Place the downloaded files in `data/gwosc/` under the repository root. The filenames currently listed by GWOSC are:
+
+- `H-H1_GWOSC_O4b_16KHZ_R1-1420877824-4096.gwf`
+- `L-L1_GWOSC_O4b_16KHZ_R1-1420877824-4096.gwf`
+
+The released configuration files contain absolute paths from the original computing environment. Before running inference, update `frame-files` in BOTH `[inspiral__data]` and `[ringdown__data]` in each configuration you intend to use.
+
+For the filenames above, use the following entries in both sections, while retaining the other configuration settings:
+
+```ini
+frame-files = H1:data/gwosc/H-H1_GWOSC_O4b_16KHZ_R1-1420877824-4096.gwf L1:data/gwosc/L-L1_GWOSC_O4b_16KHZ_R1-1420877824-4096.gwf
+channel-name = H1:GWOSC-16KHZ_R1_STRAIN L1:GWOSC-16KHZ_R1_STRAIN
+```
+
+Run `pycbc_inference` from the repository root so these relative paths resolve correctly. Alternatively, replace them with absolute paths to your downloaded files.
+
+The original configurations refer to `O4b3Disc_16KHZ_R1` files('v1'), whereas the current GWOSC links use `O4b_16KHZ_R1` filenames ('v2'). For exact reproduction, verify the data-release provenance and strain contents against the original analysis inputs before substituting a different release.
+
+Downloading the strain data is not necessary for notebooks that only read the bundled `.npz` plotting data.
+
+### run PyCBC Inference
 
 An example command line to launch a PyCBC Inference run (this should use a Linux or Mac operation system): 
 ```
@@ -39,11 +121,7 @@ pycbc_inference --verbose \
     --force
 ```
 
-It takes a few minutes to install the dependent softwares on a computer, and O(1) days to complete the runs using 32 CPU cores.
-
-## Change Log
-
-We have substantially revised the paper in a v2 of the arXiv submission.
+It takes several days to complete the runs using 32 CPU cores.
 
 ## License and Citation
 
