@@ -17,7 +17,7 @@ We use the following softwares and data to perform this work:
 
 The folder structure in this repository is:
  - `config`: configuration files used by `pycbc_inference` to obtain posterior files
- - jupyter notebooks: reproduce all figures in the paper
+ - jupyter notebooks (such as `fig01_bayes_factor_snr.ipynb`) : reproduce all figures in the paper
 
 To reproduce this work and run jupyter notebooks, follow the instructions below:
 
@@ -86,7 +86,7 @@ This changes the figure typography but does not change the numerical analysis.
 
 ### GWOSC strain data and local file paths
 
-To rerun parameter estimation, download the H1 and L1 strain data for GW250114_082203 from the GWOSC event page [here](https://gwosc.org/eventapi/html/GWTC-5.0/GW250114_082203/v2/). Select the 4096-second, 16 kHz GWF files, starting at GPS time 1420877824.
+To rerun parameter estimation, download the H1 and L1 strain data for GW250114_082203 from the GWOSC event page [here](https://gwosc.org/eventapi/html/O4_Discovery_Papers/GW250114_082203/v1/). Select the 4096-second, 16 kHz GWF files, starting at GPS time 1420877824.
 
 Place the downloaded files in `data/gwosc/` under the repository root. The filenames currently listed by GWOSC are:
 
@@ -102,15 +102,33 @@ frame-files = H1:data/gwosc/H-H1_GWOSC_O4b_16KHZ_R1-1420877824-4096.gwf L1:data/
 channel-name = H1:GWOSC-16KHZ_R1_STRAIN L1:GWOSC-16KHZ_R1_STRAIN
 ```
 
-Run `pycbc_inference` from the repository root so these relative paths resolve correctly. Alternatively, replace them with absolute paths to your downloaded files.
-
-The original configurations refer to `O4b3Disc_16KHZ_R1` files('v1'), whereas the current GWOSC links use `O4b_16KHZ_R1` filenames ('v2'). For exact reproduction, verify the data-release provenance and strain contents against the original analysis inputs before substituting a different release.
-
 Downloading the strain data is not necessary for notebooks that only read the bundled `.npz` plotting data.
+
+### Quick demo: reproduce Figure 1
+
+After installing the Python dependencies and setting up LaTeX as described above, run the following commands from the repository root:
+
+```bash
+source env/bin/activate
+jupyter lab fig01_bayes_factor_snr.ipynb
+```
+
+In JupyterLab, select **Run → Run All Cells**.
+
+The notebook reads the bundled dataset `data/fig01_bayes_factor_snr.npz` and reproduces the Bayes-factor and signal-to-noise-ratio plot. This demo does not require downloading GWOSC
+strain or NRSur model data, or rerunning parameter estimation.
+
+The figure is displayed in the notebook and saved to:
+
+```text
+figures/bayes_factor_snr_gaussian_bar1sig_arrow_drawmedian.pdf
+```
+
+Run other notebooks to reproduce other figures.
 
 ### run PyCBC Inference
 
-An example command line to launch a PyCBC Inference run (this should use a Linux or Mac operation system): 
+The command below is used for parameter estimation and generating the posteriors, which is not needed to run the jupyter notebooks above. Anyway, the command line to launch a PyCBC Inference run is (this should use a Linux or Mac operation system): 
 ```
 OMP_NUM_THREADS=1 \
 pycbc_inference --verbose \
