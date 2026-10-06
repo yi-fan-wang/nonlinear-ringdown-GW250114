@@ -55,7 +55,7 @@ We encourage use of these data in derivative works. If you use the material prov
 
 ```
 @article{Wang:2026rev,
-    author = "Wang, Yi-Fan and Ma, Sizheng and Khera, Neev and Yang, Huan",
+    author = "Wang, Yi-Fan and Ma, Sizheng and Khera, Neev and Su, Junquan and Yang, Huan",
     title = "{A nonlinear voice from GW250114 ringdown}",
     eprint = "2601.05734",
     archivePrefix = "arXiv",
