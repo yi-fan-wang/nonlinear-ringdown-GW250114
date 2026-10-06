@@ -12,8 +12,8 @@ Gravitational-wave astronomy, by detecting ripples in spacetime, has opened a ne
 ## Results & Reproduction
 
 We use the following softwares and data to perform this work: 
- - [`pycbc`](https://github.com/gwastro/pycbc)(v2.10.0 or the main branch): Core package to analyze gravitational-wave data, find signals, and study their parameters.
- - [`tgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves)(the main branch): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
+ - [`pycbc`](https://github.com/gwastro/pycbc): Core package to analyze gravitational-wave data, find signals, and study their parameters.
+ - [`tgr`](https://github.com/yi-fan-wang/TestingGR_with_Gravwaves): a pycbc waveform plugin for nonlinear quadratic quasi-normal modes waveforms.
 
 The folder structure in this repository is:
  - `config`: configuration files used by `pycbc_inference` to obtain posterior files
